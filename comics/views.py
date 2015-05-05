@@ -1,8 +1,9 @@
 
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.template import RequestContext, loader
+from django.shortcuts import render
 
-from .models import Book
+from .models import Book, BookPage
 
 
 # Create your views here.
@@ -18,3 +19,19 @@ def home(request):
 
 	# call index.html
 	return HttpResponse(template.render(context))
+
+def page(request, book_id):
+	try:
+		bookpage = BookPage.objects.get(pk=book_id,page=1)
+	except BookPage.DoesNotExist:
+		raise Http404("Question does not exist")
+	return render(request, 'page.html' , {'bookpagePic':bookpage.pic})
+	
+
+def pageDetail(request, book_id, bookpage_id):
+	try:
+		bookpage = BookPage.objects.get(pk=book_id,page=1)
+	except BookPage.DoesNotExist:
+		raise Http404("Question does not exist")
+	return render(request, 'page.html' , {'bookpagePic':bookpage.pic})
+	r#eturn HttpResponse(str(book_id) + "," + str(bookpage_id))
