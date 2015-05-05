@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+    </style>
+</head>
+<body>
+<h1>만화책 상세 페이지</h1>
+{% load staticfiles %}
+
+{% if book_page_list %}
+    <ul>
+    {% for book_page in book_page_list %}
+        <!--<li><a href="//{{ question.id }}/">{{ question.question_text }}</a></li>-->
+        <p>{{book_page}}</p>
+        <img style="height:600px; width:400px" src="{% static 'comics/img/'%}{{book_page}}" />
+        <td><p>Commnet</p></td>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+<!--
+<table>
+    <tr>
+        <td><img style="height:600px; width:400px" src="{% static 'comics/img/1.png' %}" /></td>
+        <td><img style="height:600px; width:400px" src="{% static 'comics/img/2.png' %}" /></td>
+    </tr>
+    <tr>
+        <td><p>Comment</p></td>
+    </tr>
+</table>
+-->
+
+</body>
+</html>
